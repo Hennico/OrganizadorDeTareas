@@ -1,2 +1,6 @@
 language: groovy
-sudo: false
+
+notifications:
+  slack:
+    on_success: never
+    on_failure: always
