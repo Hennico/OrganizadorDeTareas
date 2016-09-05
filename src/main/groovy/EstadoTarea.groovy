@@ -1,5 +1,5 @@
 organizadordetareas
 
-enum Estado {
+enum EstadoTarea {
     pendiente, enEjecucion, enPausa, finalizada, cancelada
 }
