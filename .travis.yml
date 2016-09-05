@@ -1,5 +1,7 @@
 language: groovy
 
+install: ./gradlew assemble --stacktrace
+
 notifications:
   email:
     recipients:
