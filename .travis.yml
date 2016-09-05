@@ -1,6 +1,8 @@
 language: groovy
 
 notifications:
-  slack:
-    on_success: never
-    on_failure: always
+  email:
+    recipients:
+      - nicolas_zanardo@hotmail.com
+    on_success: change # default: change
+    on_failure: always # default: always
