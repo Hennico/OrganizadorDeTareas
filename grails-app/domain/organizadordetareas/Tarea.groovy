@@ -3,7 +3,7 @@ package organizadordetareas
 class Tarea {
     String titulo
     String descripcion
-    Set<RelacionUsuarioTarea> tareasAnteriores
+    Set<RealacionUsuarioTarea> tareasAnteriores
     EstadoTarea estado
     int prioridad
     
