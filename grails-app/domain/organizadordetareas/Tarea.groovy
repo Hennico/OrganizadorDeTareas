@@ -7,7 +7,29 @@ class Tarea {
     EstadoTarea estado
     int prioridad
     
+	public Tarea() {
+		estado = new EstadoTareaPendiente();
+	}
+	
+	public EstadoTarea GetEstado() { estado }
+	
+	public void CambiarEstado(EstadoTareaCancelada estadoNuevo) {
+		usuarios.each { usuario -> usuario.estado = estadoNuevo }
+	}
+	public void CambiarEstado(EstadoTareaEnEjecucion estadoNuevo) {
+		estado = estadoNuevo;
+	}
+	public void CambiarEstado(EstadoTareaFinalizada estadoNuevo) {
+		if (!usuarios.any { usuario -> !usuario.estado.EsEstado(estadoNuevo) })
+			estado = estadoNuevo;
+	}
+	public void CambiarEstado(EstadoTareaPausada estadoNuevo) {
+		if (!usuarios.any { usuario -> !usuario.estado.EsEstado(estadoNuevo) })
+			estado = estadoNuevo;
+	}
+
 
     static constraints = {
     }
 }
+
