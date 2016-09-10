@@ -18,8 +18,6 @@ class Tarea {
 		estado = new EstadoTareaPendiente();
 	}
 	
-	public EstadoTarea GetEstado() { estado }
-	
 	public void CambiarEstado(EstadoTareaCancelada estadoNuevo) {
 		usuarios.each { usuario -> usuario.estado = estadoNuevo }
 	}
