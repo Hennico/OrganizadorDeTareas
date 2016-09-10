@@ -16,24 +16,50 @@
 
     <div class="navbar navbar-default navbar-static-top" role="navigation">
         <div class="container">
-            <div class="navbar-header">
-                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-                    <span class="sr-only">Toggle navigation</span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                </button>
-                <a class="navbar-brand" href="/#">
-                    <i class="fa grails-icon">
-                        <asset:image src="grails-cupsonly-logo-white.svg"/>
-                    </i> Grails
-                </a>
-            </div>
-            <div class="navbar-collapse collapse" aria-expanded="false" style="height: 0.8px;">
-                <ul class="nav navbar-nav navbar-right">
-                    <g:pageProperty name="page.nav" />
-                </ul>
-            </div>
+            <div>
+                <div>
+                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                        <span class="sr-only">Toggle navigation</span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                    <a class="navbar-brand" href="/#">
+                        <i class="fa grails-icon">
+                            <asset:image src="grails-cupsonly-logo-white.svg"/>
+                        </i> Grails
+                    </a>
+                </div>
+                <div>
+                    <a class="home" href="${createLink(uri: '/')}">
+                        <input type="button" 
+                                   value="Home" 
+                                   style="
+                                       color:#000;
+                                       background-color:#3A3;
+                                       border-color:#151;
+                                       border: 2px solid;
+                                       border-radius: 5px 15px 15px 15px;
+                                   "
+                            />
+                    </a>
+
+                    <g:each var="c" in="${grailsApplication.controllerClasses.sort { it.fullName } }">
+                        <g:link controller="${c.logicalPropertyName}">
+                            <input type="button" 
+                                   value="${c.name}" 
+                                   style="
+                                       color:#000;
+                                       background-color:#3A3;
+                                       border-color:#151;
+                                       border: 2px solid;
+                                       border-radius: 5px 15px 15px 15px;
+                                   "
+                            />
+                        </g:link>
+                    </g:each>
+                </div>
+            </div>  
         </div>
     </div>
 

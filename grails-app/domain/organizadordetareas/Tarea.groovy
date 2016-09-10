@@ -3,10 +3,17 @@ package organizadordetareas
 class Tarea {
     String titulo
     String descripcion
-    Set<RealacionUsuarioTarea> tareasAnteriores
+    Set<RelacionUsuarioTarea> tareasAnteriores
     EstadoTarea estado
     int prioridad
     
+    static constraints = {
+    }
+	
+	static def hasMany = [
+		'tareasAnteriores': RelacionUsuarioTarea
+	]
+	
 	public Tarea() {
 		estado = new EstadoTareaPendiente();
 	}
@@ -27,9 +34,5 @@ class Tarea {
 		if (!usuarios.any { usuario -> !usuario.estado.EsEstado(estadoNuevo) })
 			estado = estadoNuevo;
 	}
-
-
-    static constraints = {
-    }
 }
 

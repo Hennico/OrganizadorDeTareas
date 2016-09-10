@@ -1,6 +1,6 @@
 package organizadordetareas
 
-class RealacionUsuarioTarea {
+class RelacionUsuarioTarea {
   Tarea tarea
   EstadoTarea estado
   Usuario usuario
@@ -8,27 +8,27 @@ class RealacionUsuarioTarea {
 }
 
 public abstract class UsuarioRol {
-	public void CambiarEstadoTarea(RealacionUsuarioTarea usuarioTarea, EstadoTareaPausada estadoNuevo) {
+	public void CambiarEstadoTarea(RelacionUsuarioTarea usuarioTarea, EstadoTareaPausada estadoNuevo) {
 		usuarioTarea.estado.ValidarCambio(estadoNuevo);
 		usuarioTarea.tarea.CambiarEstado(estadoNuevo);
 		usuarioTarea.estado = estadoNuevo;
 	}
-	public void CambiarEstadoTarea(RealacionUsuarioTarea usuarioTarea, EstadoTareaFinalizada estadoNuevo) {
+	public void CambiarEstadoTarea(RelacionUsuarioTarea usuarioTarea, EstadoTareaFinalizada estadoNuevo) {
 		usuarioTarea.estado.ValidarCambio(estadoNuevo);
 		usuarioTarea.tarea.CambiarEstado(estadoNuevo);
 		usuarioTarea.estado = estadoNuevo;
 	}
-	public void CambiarEstadoTarea(RealacionUsuarioTarea usuarioTarea , EstadoTareaEnEjecucion estadoNuevo) {
+	public void CambiarEstadoTarea(RelacionUsuarioTarea usuarioTarea , EstadoTareaEnEjecucion estadoNuevo) {
 		usuarioTarea.estado.ValidarCambio(estadoNuevo);
 		usuarioTarea.tarea.CambiarEstado(estadoNuevo);
 		usuarioTarea.estado = estadoNuevo;
 	}
 	
-	public abstract void CambiarEstadoTarea(RealacionUsuarioTarea usuarioTarea , EstadoTareaCancelada estadoNuevo);
+	public abstract void CambiarEstadoTarea(RelacionUsuarioTarea usuarioTarea , EstadoTareaCancelada estadoNuevo);
 }
 
 public class UsuarioRolAdministrador extends UsuarioRol {
-	public void CambiarEstadoTarea(RealacionUsuarioTarea usuarioTarea, EstadoTareaCancelada estadoNuevo) {
+	public void CambiarEstadoTarea(RelacionUsuarioTarea usuarioTarea, EstadoTareaCancelada estadoNuevo) {
 		if (!usuarioTarea.estado.EsEstado(estadoNuevo))
 			usuarioTarea.tarea.CambiarEstado(estadoNuevo);
 		else
@@ -37,7 +37,7 @@ public class UsuarioRolAdministrador extends UsuarioRol {
 }
 
 public class UsuarioRolOperario extends UsuarioRol {
-	public void CambiarEstadoTarea(RealacionUsuarioTarea usuarioTarea, EstadoTareaCancelada estadoNuevo) {
+	public void CambiarEstadoTarea(RelacionUsuarioTarea usuarioTarea, EstadoTareaCancelada estadoNuevo) {
 		throw new Exception("Un operario no puede cancelar una tarea");
 	}
 }

@@ -1,14 +1,14 @@
 package organizadordetareas
 
 class Usuario {
-    Set<RealacionUsuarioTarea> tareasAsignadas
+    Set<RelacionUsuarioTarea> tareasAsignadas
 
     static constraints = {
     }
 
     void AsignarTarea(Tarea nuevaTarea, UsuarioRol rol) {
         if (!tareasAsignadas.any({ tareaActual -> tareaActual.tarea == nuevaTarea }))
-            tareasAsignadas.add(new RealacionUsuarioTarea([
+            tareasAsignadas.add(new RelacionUsuarioTarea([
                 tarea: nuevaTarea,
                 estado: Estado.pendiente,
                 usuarioRol: rol,
