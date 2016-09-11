@@ -13,6 +13,7 @@ class TareaControllerSpec extends Specification {
 		params.titulo = "TareaNueva";
 		params.descripcion = "Una tarea de prueba";
 		params.prioridad = 1;
+		params.objetivo = new Objetivo();
     }
 
     void "Test the index action returns the correct model"() {

@@ -27,6 +27,7 @@
             </g:hasErrors>
             <g:form action="save">
                 <fieldset class="form">
+					<f:field bean="tarea" property="objetivo"/>
                     <f:field bean="tarea" property="titulo"/>
                     <f:field bean="tarea" property="descripcion"/>
                     <f:field bean="tarea" property="prioridad"/>

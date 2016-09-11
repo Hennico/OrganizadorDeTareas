@@ -29,7 +29,15 @@
             <g:form resource="${this.tarea}" method="PUT">
                 <g:hiddenField name="version" value="${this.tarea?.version}" />
                 <fieldset class="form">
-                    <f:all bean="tarea"/>
+                    <f:field bean="tarea" property="titulo"/>
+                    <f:field bean="tarea" property="descripcion"/>
+                    <f:field bean="tarea" property="prioridad"/>
+					<f:field bean="tarea" property="objetivo"/>
+					
+					<div class="fieldcontain">
+						<label>Estado</label>
+						<g:textField name="estado" disabled="true" value="${this.tarea?.estado}"/>
+					</div>
                 </fieldset>
                 <fieldset class="buttons">
                     <input class="save" type="submit" value="${message(code: 'default.button.update.label', default: 'Update')}" />

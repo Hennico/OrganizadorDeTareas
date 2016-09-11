@@ -1,48 +1,23 @@
 package organizadordetareas
 
-class RelacionUsuarioTarea {
-  Tarea tarea
-  EstadoTarea estado
-  Usuario usuario
-  UsuarioRol rol
-}
-
-public abstract class UsuarioRol {
-	public void CambiarEstadoTarea(RelacionUsuarioTarea usuarioTarea, EstadoTareaPausada estadoNuevo) {
-		usuarioTarea.estado.ValidarCambio(estadoNuevo);
-		usuarioTarea.tarea.CambiarEstado(estadoNuevo);
-		usuarioTarea.estado = estadoNuevo;
-	}
-	public void CambiarEstadoTarea(RelacionUsuarioTarea usuarioTarea, EstadoTareaFinalizada estadoNuevo) {
-		usuarioTarea.estado.ValidarCambio(estadoNuevo);
-		usuarioTarea.tarea.CambiarEstado(estadoNuevo);
-		usuarioTarea.estado = estadoNuevo;
-	}
-	public void CambiarEstadoTarea(RelacionUsuarioTarea usuarioTarea , EstadoTareaEnEjecucion estadoNuevo) {
-		usuarioTarea.estado.ValidarCambio(estadoNuevo);
-		usuarioTarea.tarea.CambiarEstado(estadoNuevo);
-		usuarioTarea.estado = estadoNuevo;
+public abstract class EstadoTarea {
+	static final String PAUSADA = "pausada";
+	static final String PENDIENTE = "pendiente";
+	static final String CANCELADA = "cancelada";
+	static final String FINALIZADA = "finalizada";
+	static final String EN_EJECUCION = "en ejecucion";
+	
+	static EstadoTarea GenerateEstadoTarea(String estado) {
+		switch (estado) {
+			case EstadoTarea.PAUSADA: return new EstadoTareaPausada(); break;
+            case EstadoTarea.PENDIENTE: return new EstadoTareaPendiente(); break;
+            case EstadoTarea.CANCELADA: return new EstadoTareaCancelada(); break;
+            case EstadoTarea.FINALIZADA: return new EstadoTareaFinalizada(); break;
+            case EstadoTarea.EN_EJECUCION: return new EstadoTareaEnEjecucion(); break;
+		}
+		throw new Exception("Nombre no valido");
 	}
 	
-	public abstract void CambiarEstadoTarea(RelacionUsuarioTarea usuarioTarea , EstadoTareaCancelada estadoNuevo);
-}
-
-public class UsuarioRolAdministrador extends UsuarioRol {
-	public void CambiarEstadoTarea(RelacionUsuarioTarea usuarioTarea, EstadoTareaCancelada estadoNuevo) {
-		if (!usuarioTarea.estado.EsEstado(estadoNuevo))
-			usuarioTarea.tarea.CambiarEstado(estadoNuevo);
-		else
-			throw new Exception("La tarea ya esta cancelada");
-	}
-}
-
-public class UsuarioRolOperario extends UsuarioRol {
-	public void CambiarEstadoTarea(RelacionUsuarioTarea usuarioTarea, EstadoTareaCancelada estadoNuevo) {
-		throw new Exception("Un operario no puede cancelar una tarea");
-	}
-}
-
-public abstract class EstadoTarea {
 	protected abstract int valorIgualdad();
 	public boolean EsEstado(EstadoTarea otroEstado) {
 		this.valorIgualdad() == otroEstado.valorIgualdad();
@@ -54,23 +29,27 @@ public abstract class EstadoTarea {
 }
 
 public class EstadoTareaPausada extends EstadoTarea {
+	String ToString() { PAUSADA }
 	protected int valorIgualdad() { 1 }
 	
 	public void ValidarCambio(EstadoTareaPausada estadoNuevo) { throw new Exception("La tarea ya se encuentra pausada") }
 }
 public class EstadoTareaPendiente extends EstadoTarea {
+	String ToString() { PENDIENTE }
 	protected int valorIgualdad() { 2 }
 	
 	public void ValidarCambio(EstadoTareaPausada estadoNuevo) { throw new Exception("No se puede Pausar una tarea pendiente") }
 }
 public class EstadoTareaCancelada extends EstadoTarea {
+	String ToString() { CANCELADA }
 	protected int valorIgualdad() { 3 }
 
-public void ValidarCambio(EstadoTareaPausada estadoNuevo) { throw new Exception("No se puede cambiar el estado de una tarea Cancelada") }
+	public void ValidarCambio(EstadoTareaPausada estadoNuevo) { throw new Exception("No se puede cambiar el estado de una tarea Cancelada") }
 	public void ValidarCambio(EstadoTareaFinalizada estadoNuevo) { throw new Exception("No se puede cambiar el estado de una tarea Cancelada") }
 	public void ValidarCambio(EstadoTareaEnEjecucion estadoNuevo) { throw new Exception("No se puede cambiar el estado de una tarea Cancelada") }
 }
 public class EstadoTareaFinalizada extends EstadoTarea {
+	String ToString() { FINALIZADA }
 	protected int valorIgualdad() { 4 }
 	
 	public void ValidarCambio(EstadoTareaPausada estadoNuevo) { throw new Exception("No se puede cambiar el estado de una tarea Finalizada") }
@@ -78,6 +57,7 @@ public class EstadoTareaFinalizada extends EstadoTarea {
 	public void ValidarCambio(EstadoTareaEnEjecucion estadoNuevo) { throw new Exception("No se puede cambiar el estado de una tarea Finalizada") }
 }
 public class EstadoTareaEnEjecucion extends EstadoTarea {
+	String ToString() { EN_EJECUCION }
 	protected int valorIgualdad() { 5 }
 	
 	public void ValidarCambio(EstadoTareaFinalizada estadoNuevo) {}
