@@ -1,26 +1,31 @@
 package organizadordetareas
 
 class Objetivo {
-    String titulo
-    String descripcion
-    Set<RelacionUsuarioTarea> tareasAnteriores
-    String estado //Por ahora lo dejo asi
+    	String titulo
+    	String descripcion
+    	Set<TareaDependencia> tareasAnteriores
+    	String estado //Por ahora lo dejo asi
 	
-    int prioridad
-	// cuando corrigamos los nombres de las variables. Tambien corregir los de la View.
+    	int prioridad
+		// cuando corrigamos los nombres de las variables. Tambien corregir los de la View.
 
 	public Objetivo() {
 		estado = EstadoTarea.PENDIENTE;
 	}
 
-    static constraints = {
-    }
+    	static constraints = {
+    	}
 	
-    EstadoTarea getEstadoTarea() {
-        EstadoTarea.GenerateEstadoTarea(estado);
-    }
+    	EstadoTarea getEstadoTarea() {
+       		EstadoTarea.GenerateEstadoTarea(estado);
+    	}
 	
 	String toString() {
 		titulo
 	}
+
+   	public NewTareaAnterior(Tarea NuevaTarea, TareaDependencia estado) {
+		tareasAnteriores.add (new TareaDependencia(This,NuevaTarea,estado))
+	}
+
 }
