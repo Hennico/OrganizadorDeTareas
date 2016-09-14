@@ -31,6 +31,7 @@
                     <f:field bean="tarea" property="titulo"/>
                     <f:field bean="tarea" property="descripcion"/>
                     <f:field bean="tarea" property="prioridad"/>
+                    <f:field bean="tarea" property="tareaSiguiente"/>
                 </fieldset>
                 <fieldset class="buttons">
                     <g:submitButton name="create" class="save" value="${message(code: 'default.button.create.label', default: 'Create')}" />

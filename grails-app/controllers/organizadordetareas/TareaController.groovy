@@ -21,6 +21,18 @@ class TareaController {
         respond new Tarea(params)
     }
 
+    def Sumar() {
+    	redirect(action:'sum')
+    }
+
+
+
+
+
+
+
+
+
     @Transactional
     def save(Tarea tarea) {
         if (tarea == null) {
@@ -94,6 +106,8 @@ class TareaController {
             '*'{ render status: NO_CONTENT }
         }
     }
+
+
 
     protected void notFound() {
         request.withFormat {

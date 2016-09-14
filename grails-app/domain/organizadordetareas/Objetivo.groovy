@@ -1,9 +1,8 @@
 package organizadordetareas
 
-class Objetivo {
+class Objetivo extends Accion{
     	String titulo
     	String descripcion
-    	Set<TareaDependencia> tareasAnteriores
     	String estado //Por ahora lo dejo asi
 	
     	int prioridad
