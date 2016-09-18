@@ -25,7 +25,12 @@ class TareaController {
     	redirect(action:'sum')
     }
 
-
+	def cambiarAEjecucion(int id) {
+		Tarea tarea = Tarea.get(id)
+		tarea.estado = EstadoTarea.EN_EJECUCION
+		tarea.save flush:true
+		render(view: "index")
+	}
 
 
 

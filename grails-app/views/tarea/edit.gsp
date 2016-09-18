@@ -37,6 +37,7 @@
 					<div class="fieldcontain">
 						<label>Estado</label>
 						<g:textField name="estado" disabled="true" value="${this.tarea?.estado}"/>
+						<input type="submit" controller="tarea" formaction="/tarea/cambiarAEjecucion?id=${this.tarea?.id}" value="En ejecucion" />
 					</div>
                 </fieldset>
                 <fieldset class="buttons">
