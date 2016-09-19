@@ -27,7 +27,7 @@ class TareaController {
 
 	def cambiarAEjecucion(int id) {
 		Tarea tarea = Tarea.get(id)
-		tarea.estado = EstadoTarea.EN_EJECUCION
+		tarea.CambiarEstado(new EstadoTareaEnEjecucion());
 		tarea.save flush:true
 		render(view: "index")
 	}
