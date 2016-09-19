@@ -1,12 +1,14 @@
 package organizadordetareas
 
-class Tarea extends Accion{
+class Tarea extends Dependiente{
     	String titulo
     	String descripcion
    	Set<RelacionUsuarioTarea> tareasAnteriores
 	Objetivo objetivo
    	int prioridad
 	String estado
+
+	Dependiente tareaSiguiente //Si no deberia tenerla. Pero hase mas practico armar el arbol, por ahora. 
 	
     	static constraints = {
 		//objetivo nullable: true
@@ -40,8 +42,8 @@ class Tarea extends Accion{
 		EstadoTarea.GenerateEstadoTarea(estado);
 	}
 
-	public sum() {
-		prioridad=prioridad+1;
+	public Actualizar() {
+		tareaSiguiente.NewTareaAnterior(this,DependenciaTipo.alta)
 	}
 }
 

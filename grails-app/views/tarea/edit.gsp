@@ -39,10 +39,21 @@
 						<g:textField name="estado" disabled="true" value="${this.tarea?.estado}"/>
 						<input type="submit" controller="tarea" formaction="/tarea/cambiarAEjecucion?id=${this.tarea?.id}" value="En ejecucion" />
 					</div>
+
+					<div class="fieldcontain">
+						<label>NuevoPadre</label>
+						<g:select name="tarea.id"
+						noSelection="['':'-NuevoPadree-']"
+          					from="${Tarealist}"
+						optionValue="name"
+						optionKey="id"/>
+
+						<input type="submit" controller="tarea" formaction="/tarea/agregarPadre?id=${this.tarea?.id}" value="Agregar" />
+					</div>
+
                 </fieldset>
                 <fieldset class="buttons">
                     <input class="save" type="submit" value="${message(code: 'default.button.update.label', default: 'Update')}" />
-                    <input type="actualizar" value="actualizar"/>
                 </fieldset>
             </g:form>
 

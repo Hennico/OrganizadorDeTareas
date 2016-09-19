@@ -21,10 +21,6 @@ class TareaController {
         respond new Tarea(params)
     }
 
-    def Sumar() {
-    	redirect(action:'sum')
-    }
-
 	def cambiarAEjecucion(int id) {
 		Tarea tarea = Tarea.get(id)
 		tarea.CambiarEstado(new EstadoTareaEnEjecucion());
@@ -32,7 +28,12 @@ class TareaController {
 		render(view: "index")
 	}
 
-
+	def agregarPadre(int id) {
+		Tarea tarea = Tarea.get(id)
+		tarea.Actualizar();
+		tarea.save flush:true
+		render(view: "index")
+	}
 
 
 

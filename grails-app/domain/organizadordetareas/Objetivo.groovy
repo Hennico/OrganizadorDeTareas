@@ -1,6 +1,6 @@
 package organizadordetareas
 
-class Objetivo extends Accion{
+class Objetivo extends Dependiente{
     	String titulo
     	String descripcion
     	String estado //Por ahora lo dejo asi
@@ -23,8 +23,6 @@ class Objetivo extends Accion{
 		titulo
 	}
 
-   	public NewTareaAnterior(Tarea NuevaTarea, TareaDependencia estado) {
-		tareasAnteriores.add (new TareaDependencia(This,NuevaTarea,estado))
-	}
+
 
 }
