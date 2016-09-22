@@ -31,10 +31,10 @@
                     <f:field bean="tarea" property="titulo"/>
                     <f:field bean="tarea" property="descripcion"/>
                     <f:field bean="tarea" property="prioridad"/>
-                    <f:field bean="tarea" property="tareaSiguiente"/>
                 </fieldset>
                 <fieldset class="buttons">
-                    <g:submitButton name="create" class="save" value="${message(code: 'default.button.create.label', default: 'Create')}" />
+			<input type="submit" controller="tarea" formaction="/tarea/crear?id=${this.tarea?.id}" value="crear2"/>
+                   	<g:submitButton name="create" class="save" value="${message(code: 'default.button.create.label', default: 'Create')}" />
                 </fieldset>
             </g:form>
         </div>

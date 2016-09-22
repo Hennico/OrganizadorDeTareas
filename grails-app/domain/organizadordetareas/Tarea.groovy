@@ -8,7 +8,6 @@ class Tarea extends Dependiente{
    	int prioridad
 	String estado
 
-	Dependiente tareaSiguiente //Si no deberia tenerla. Pero hase mas practico armar el arbol, por ahora. 
 	
     	static constraints = {
 		//objetivo nullable: true
@@ -42,8 +41,8 @@ class Tarea extends Dependiente{
 		EstadoTarea.GenerateEstadoTarea(estado);
 	}
 
-	public Actualizar() {
-		tareaSiguiente.NewTareaAnterior(this,DependenciaTipo.alta)
+	public AvisarAlObjetivo() {
+		objetivo.NewTareaAnterior(this,DependenciaTipo.alta)
 	}
 }
 

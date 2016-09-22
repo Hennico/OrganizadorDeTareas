@@ -20,19 +20,26 @@ class TareaController {
     def create() {
         respond new Tarea(params)
     }
+	
+    	def crear() {
+		Tarea tarea = new Tarea(params)
+		tarea.AvisarAlObjetivo();
+		tarea.save flush:true
+		render(view: "show", model: [tarea: tarea])
+	}
 
 	def cambiarAEjecucion(int id) {
 		Tarea tarea = Tarea.get(id)
 		tarea.CambiarEstado(new EstadoTareaEnEjecucion());
 		tarea.save flush:true
-		render(view: "index")
+		render(view: "show", model: [tarea: tarea])
 	}
 
 	def agregarPadre(int id) {
 		Tarea tarea = Tarea.get(id)
-		tarea.Actualizar();
+		tarea.AvisarAlObjetivo();
 		tarea.save flush:true
-		render(view: "index")
+		render(view: "show", model: [tarea: tarea])
 	}
 
 
