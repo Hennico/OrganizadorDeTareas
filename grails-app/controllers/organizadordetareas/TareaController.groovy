@@ -42,8 +42,18 @@ class TareaController {
 		render(view: "show", model: [tarea: tarea])
 	}
 
+	def agregarHija(int id) {
+		Tarea tarea = Tarea.get(id)
+		render(view: "CrearHija", model: [tarea: tarea])
+	}
 
 
+	def CrearYAgregarHijo(int id) {
+		Tarea tarea = Tarea.get(id)
+		tarea.CrearYAgregarHijo(params.titulo, params.descripcion, params.prioridad.toInteger());
+		tarea.save flush:true
+		render(view: "show", model: [tarea: tarea])
+	}
 
 
     @Transactional

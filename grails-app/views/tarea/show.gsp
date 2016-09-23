@@ -23,7 +23,8 @@
             <g:form resource="${this.tarea}" method="DELETE">
                 <fieldset class="buttons">
                     <g:link class="edit" action="edit" resource="${this.tarea}"><g:message code="default.button.edit.label" default="Edit" /></g:link>
-                    <input class="delete" type="submit"t" value="${message(code: 'default.button.delete.label', default: 'Delete')}" onclick="return confirm('${message(code: 'default.button.delete.confirm.message', default: 'Are you sure?')}');" />
+                    <input class="delete" type="submit"t" value="${message(code: 'default.button.delete.label', default: 'Delete')}" onclick="return confirm('${message(code: 'default.button.delete.confirm.message', default: 'Are you sure?')}');" /> 
+		<input type="submit" controller="tarea" formaction="/tarea/agregarHija?id=${this.tarea?.id}" value="AgregarSubTarea"/>
                 </fieldset>
             </g:form>
 

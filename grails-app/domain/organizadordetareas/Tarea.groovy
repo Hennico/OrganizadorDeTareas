@@ -44,5 +44,21 @@ class Tarea extends Dependiente{
 	public AvisarAlObjetivo() {
 		objetivo.NewTareaAnterior(this,DependenciaTipo.alta)
 	}
+
+
+
+	public CrearYAgregarHijo(String titulo, String descripcion, int prioridad) {
+		Tarea tareaHija = Tarea.newInstance(titulo, descripcion, objetivo, prioridad)
+		tareaHija.save flush:true
+		tareasAnteriores.add (new TareaDependencia(this,tareaHija,DependenciaTipo.alta))
+	}	
+
+	public Tarea (String titulo, String descripcion, Objetivo objetivo, int prioridad) {
+		estado = EstadoTarea.PENDIENTE
+		this.titulo = titulo
+		this.descripcion = descripcion
+		this.objetivo = objetivo
+		this.prioridad = prioridad
+	}
 }
 
