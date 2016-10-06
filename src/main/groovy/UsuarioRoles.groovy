@@ -1,38 +1,29 @@
 package organizadordetareas
 
 public abstract class UsuarioRol {
-	public void CambiarEstadoTarea(RelacionUsuarioTarea usuarioTarea, EstadoTareaPausada estadoNuevo) {
-		usuarioTarea.EstadoTarea.ValidarCambio(estadoNuevo);
+	private def estadosQuePuedoUsar = [PENDIENTE,EN_EJECUCION,PAUSADA,FINALIZADA]
+
+	public void CambiarEstadoTarea(RelacionUsuarioTarea usuarioTarea, EstadoTarea estadoNuevo) {
+		if (usuarioTarea.EstadoTarea.permiteCambioA(estadoNuevo) && estadoNuevo in estadosQuePuedoUsar){
 		usuarioTarea.tarea.CambiarEstado(estadoNuevo);
-		usuarioTarea.estado = estadoNuevo.ToString();
+		usuarioTarea.estado = estadoNuevo
+		}
 	}
-	public void CambiarEstadoTarea(RelacionUsuarioTarea usuarioTarea, EstadoTareaFinalizada estadoNuevo) {
-		usuarioTarea.EstadoTarea.ValidarCambio(estadoNuevo);
-		usuarioTarea.tarea.CambiarEstado(estadoNuevo);
-		usuarioTarea.estado = estadoNuevo.ToString();
-	}
-	public void CambiarEstadoTarea(RelacionUsuarioTarea usuarioTarea , EstadoTareaEnEjecucion estadoNuevo) {
-		usuarioTarea.EstadoTarea.ValidarCambio(estadoNuevo);
-		usuarioTarea.tarea.CambiarEstado(estadoNuevo);
-		usuarioTarea.estado = estadoNuevo.ToString();;
-	}
-	
-	public abstract void CambiarEstadoTarea(RelacionUsuarioTarea usuarioTarea , EstadoTareaCancelada estadoNuevo);
 }
 
 public class UsuarioRolAdministrador extends UsuarioRol {
-	public void CambiarEstadoTarea(RelacionUsuarioTarea usuarioTarea, EstadoTareaCancelada estadoNuevo) {
-		if (!usuarioTarea.EstadoTarea.EsEstado(estadoNuevo)) {
+	private def estadosEsepecialesQuePuedoUsar = [CANCELADA]
+
+	public void CambiarEstadoTarea(RelacionUsuarioTarea usuarioTarea, EstadoTarea estadoNuevo) {
+		super.CambiarEstadoTarea(usuarioTarea, estadoNuevo)
+
+		if (usuarioTarea.EstadoTarea.permiteCambioA(estadoNuevo) && (estadoNuevo== CANCELADA)) {
 			usuarioTarea.tarea.CambiarEstado(estadoNuevo);
-			usuarioTarea.estado = estadoNuevo.ToString();
+			usuarioTarea.estado = estadoNuevo
 		}
-		else
-			throw new Exception("La tarea ya esta cancelada");
 	}
 }
 
 public class UsuarioRolOperario extends UsuarioRol {
-	public void CambiarEstadoTarea(RelacionUsuarioTarea usuarioTarea, EstadoTareaCancelada estadoNuevo) {
-		throw new Exception("Un operario no puede cancelar una tarea");
-	}
+
 }

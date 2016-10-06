@@ -6,7 +6,7 @@ class Tarea extends Dependiente{
    	Set<RelacionUsuarioTarea> tareasAnteriores
 	Objetivo objetivo
    	int prioridad
-	String estado
+	EstadoTarea estado
 
 	
     	static constraints = {
@@ -21,25 +21,16 @@ class Tarea extends Dependiente{
 		estado = EstadoTarea.PENDIENTE
 	}
 
-	public void CambiarEstado(EstadoTareaCancelada estadoNuevo) {
-		usuarios.each { usuario -> usuario.estado = estadoNuevo }
-        estado = estadoNuevo.ToString();
-	}
-	public void CambiarEstado(EstadoTareaEnEjecucion estadoNuevo) {
-		estado = estadoNuevo.ToString();
-	}
-	public void CambiarEstado(EstadoTareaFinalizada estadoNuevo) {
-		if (!usuarios.any { usuario -> !usuario.estado.EsEstado(estadoNuevo) })
-			estado = estadoNuevo.ToString();
-	}
-	public void CambiarEstado(EstadoTareaPausada estadoNuevo) {
-		if (!usuarios.any { usuario -> !usuario.estado.EsEstado(estadoNuevo) })
-			estado = estadoNuevo.ToString();
+	public void CambiarEstado(EstadoTarea estadoNuevo) {
+		estado = estadoNuevo
 	}
 	
-	public EstadoTarea GetEstadoTarea() {
-		EstadoTarea.GenerateEstadoTarea(estado);
+	public void ComprobarYCambiarEstado(EstadoTarea estadoNuevo) {
+		if (estado.permiteCambioA(estadoNuevo)){
+		estado = estadoNuevo
+		}
 	}
+
 
 	public AvisarAlObjetivo() {
 		objetivo.NewTareaAnterior(this,DependenciaTipo.alta)
