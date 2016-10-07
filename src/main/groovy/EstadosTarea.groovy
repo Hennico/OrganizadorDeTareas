@@ -7,15 +7,17 @@ public enum EstadoTarea {
 	CANCELADA,
 	FINALIZADA
 	
-	private def maquinaEstados = [
-		(EstadoTarea.PENDIENTE):[EstadoTarea.EN_EJECUCION, EstadoTarea.CANCELADA],
-		(EstadoTarea.EN_EJECUCION):[EstadoTarea.PAUSADA,EstadoTarea.CANCELADA,EstadoTarea.FINALIZADA],
-		(EstadoTarea.PAUSADA):[EstadoTarea.EN_EJECUCION,PAUSADA,EstadoTarea.CANCELADA],
-		(EstadoTarea.CANCELADA):[],
-		(EstadoTarea.FINALIZADA):[],
+	static private def maquinaEstados = [
+		(PENDIENTE):[EN_EJECUCION, CANCELADA],
+		(EN_EJECUCION):[PAUSADA,CANCELADA,FINALIZADA],
+		(PAUSADA):[EN_EJECUCION,PAUSADA,CANCELADA],
+		(CANCELADA):[],
+		(FINALIZADA):[],
 	]
 	
-	boolean permiteCambioA(EstadoTarea siguienteEstado) {
-       	siguienteEstado in maquinaEstados[this]
+	private def arreglo = [EN_EJECUCION,CANCELADA]
+	
+	boolean permiteCambioA(EstadoTarea siguienteEstado) { 
+		siguienteEstado in (maquinaEstados[this]) 
 	}
 }

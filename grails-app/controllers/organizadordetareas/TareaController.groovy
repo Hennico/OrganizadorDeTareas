@@ -30,7 +30,9 @@ class TareaController {
 
 	def cambiarAEjecucion(int id) {
 		Tarea tarea = Tarea.get(id)
+		
 		tarea.ComprobarYCambiarEstado(EstadoTarea.EN_EJECUCION);
+		
 		tarea.save flush:true
 		render(view: "show", model: [tarea: tarea])
 	}
