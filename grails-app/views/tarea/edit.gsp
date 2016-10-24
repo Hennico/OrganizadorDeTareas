@@ -38,6 +38,10 @@
 						<label>Estado</label>
 						<g:textField name="estado" disabled="true" value="${this.tarea?.estado}"/>
 						<input type="submit" controller="tarea" formaction="/tarea/cambiarAEjecucion?id=${this.tarea?.id}" value="En ejecucion" />
+						<input type="submit" controller="tarea" formaction="/tarea/cambiarACancelada?id=${this.tarea?.id}" value="Cancelar" />
+						<input type="submit" controller="tarea" formaction="/tarea/cambiarAFinalizada?id=${this.tarea?.id}" value="Finalizar" />
+						<input type="submit" controller="tarea" formaction="/tarea/cambiarAPausada?id=${this.tarea?.id}" value="Pausar" />
+						<input type="submit" controller="tarea" formaction="/tarea/cambiarAPendiente?id=${this.tarea?.id}" value="APendiente" />					
 					</div>
 
 					<div class="fieldcontain">

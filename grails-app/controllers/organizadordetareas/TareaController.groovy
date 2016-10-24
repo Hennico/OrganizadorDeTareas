@@ -28,14 +28,49 @@ class TareaController {
 		render(view: "show", model: [tarea: tarea])
 	}
 
+
+//Cambios de estado.
 	def cambiarAEjecucion(int id) {
 		Tarea tarea = Tarea.get(id)
-		
 		tarea.ComprobarYCambiarEstado(EstadoTarea.EN_EJECUCION);
-		
 		tarea.save flush:true
 		render(view: "show", model: [tarea: tarea])
 	}
+
+	def cambiarACancelada(int id) {
+		Tarea tarea = Tarea.get(id)
+		tarea.ComprobarYCambiarEstado(EstadoTarea.CANCELADA);
+		tarea.save flush:true
+		render(view: "show", model: [tarea: tarea])
+	}
+
+
+	def cambiarAFinalizada(int id) {
+		Tarea tarea = Tarea.get(id)
+		tarea.ComprobarYCambiarEstado(EstadoTarea.FINALIZADA);
+		tarea.save flush:true
+		render(view: "show", model: [tarea: tarea])
+	}
+
+
+	def cambiarAPausada(int id) {
+		Tarea tarea = Tarea.get(id)
+		tarea.ComprobarYCambiarEstado(EstadoTarea.PAUSADA);
+		tarea.save flush:true
+		render(view: "show", model: [tarea: tarea])
+	}
+
+	def cambiarAPendiente(int id) {
+		Tarea tarea = Tarea.get(id)
+		tarea.ComprobarYCambiarEstado(EstadoTarea.PENDIENTE);
+		tarea.save flush:true
+		render(view: "show", model: [tarea: tarea])
+	}
+
+
+
+
+
 
 	def agregarPadre(int id) {
 		Tarea tarea = Tarea.get(id)
