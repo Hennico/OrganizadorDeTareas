@@ -8,7 +8,11 @@ class TareaService{
 
     def cambiarTareaAEnEjecucion(Tarea tarea) {
 	if (tarea.ComprobarSiPuedoCambiarEstado(EstadoTarea.EN_EJECUCION)){
-		tarea.CambiarEstado(EstadoTarea.EN_EJECUCION)
+		boolean flag = true
+		tarea.tareasAnteriores.each{if(!(it.tareaDependida.estado==EstadoTarea.CANCELADA ||it.tareaDependida.estado==EstadoTarea.FINALIZADA)){flag = false}}
+		if (flag){
+			tarea.CambiarEstado(EstadoTarea.EN_EJECUCION)
+			}
 		}
 	tarea.save flush:true
 	}
