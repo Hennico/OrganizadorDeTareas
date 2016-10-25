@@ -24,7 +24,12 @@ class Tarea extends Dependiente{
 	public void CambiarEstado(EstadoTarea estadoNuevo) {
 		estado = estadoNuevo
 	}
-	
+
+	public boolean ComprobarSiPuedoCambiarEstado(EstadoTarea estadoNuevo) {
+		return estado.permiteCambioA(estadoNuevo)
+	}	
+
+
 	public void ComprobarYCambiarEstado(EstadoTarea estadoNuevo) {
 		if (estado.permiteCambioA(estadoNuevo)){
 		estado = estadoNuevo
