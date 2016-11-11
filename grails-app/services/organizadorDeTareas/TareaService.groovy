@@ -40,6 +40,15 @@ class TareaService{
 	}
 
 
+    def crearYAgregarHijo(Tarea tarea, String titulo, String descripcion, int prioridad) {
+	if (tarea.estado == EstadoTarea.PENDIENTE){
+		tarea.CrearYAgregarHijo(titulo, descripcion,prioridad)
+		}
+	tarea.save flush:true
+	}
+
+
+
 
     def serviceMethod() {
 

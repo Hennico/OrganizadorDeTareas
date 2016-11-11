@@ -15,5 +15,11 @@ class TareaSpec extends Specification {
     def cleanup() {
     }
 	
+    void "test inicio en pendiente"() {
+	when:
+	Tarea A = new Tarea()
+        then:
+        A.estado == EstadoTarea.PENDIENTE 
+    }
 	
 }

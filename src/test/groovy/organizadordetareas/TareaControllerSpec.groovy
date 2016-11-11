@@ -150,4 +150,5 @@ class TareaControllerSpec extends Specification {
             response.redirectedUrl == '/tarea/index'
             flash.message != null
     }
+
 }

@@ -86,8 +86,7 @@ class TareaController {
 
 	def CrearYAgregarHijo(int id) {
 		Tarea tarea = Tarea.get(id)
-		tarea.CrearYAgregarHijo(params.titulo, params.descripcion, params.prioridad.toInteger());
-		tarea.save flush:true
+		tareaService.crearYAgregarHijo(tarea, params.titulo, params.descripcion, params.prioridad.toInteger());
 		render(view: "show", model: [tarea: tarea])
 	}
 
