@@ -3,7 +3,6 @@ package organizadordetareas
 class Tarea extends Dependiente{
     	String titulo
     	String descripcion
-   	Set<RelacionUsuarioTarea> tareasAnteriores
 	Objetivo objetivo
    	int prioridad
 	EstadoTarea estado
