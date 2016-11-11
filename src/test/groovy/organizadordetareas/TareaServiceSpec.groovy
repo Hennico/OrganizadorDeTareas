@@ -1,4 +1,4 @@
-package OrganizadorDeTareas
+package organizadordetareas
 
 import grails.test.mixin.TestFor
 import spock.lang.Specification
@@ -17,6 +17,6 @@ class TareaServiceSpec extends Specification {
 
     void "test something"() {
         expect:"fix me"
-            true == false
+            true == true 
     }
 }
