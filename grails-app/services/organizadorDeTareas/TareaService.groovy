@@ -6,7 +6,7 @@ import grails.transaction.Transactional
 
 class TareaService{
 
-    def cambiarTareaAEnEjecucion(Tarea tarea) {
+    def cambiarAEnEjecucion(Tarea tarea) {
 	if (tarea.ComprobarSiPuedoCambiarEstado(EstadoTarea.EN_EJECUCION)){
 		boolean flag = true
 		tarea.tareasAnteriores.each{if(!(it.tareaDependida.estado==EstadoTarea.CANCELADA ||it.tareaDependida.estado==EstadoTarea.FINALIZADA)){flag = false}}
@@ -17,7 +17,7 @@ class TareaService{
 	tarea.save flush:true
 	}
 
-    def cambiarTareaACancelada(Tarea tarea) {
+    def cambiarACancelada(Tarea tarea) {
 	if (tarea.ComprobarSiPuedoCambiarEstado(EstadoTarea.CANCELADA)){
 		tarea.CambiarEstado(EstadoTarea.CANCELADA)
 		}
@@ -25,14 +25,14 @@ class TareaService{
 	tarea.save flush:true
 	}
 
-    def cambiarTareaAFinalizar(Tarea tarea) {
+    def cambiarAFinalizar(Tarea tarea) {
 	if (tarea.ComprobarSiPuedoCambiarEstado(EstadoTarea.FINALIZADA)){
 		tarea.CambiarEstado(EstadoTarea.FINALIZADA)
 		}
 	tarea.save flush:true
 	}
 
-    def cambiarTareaAPauzar(Tarea tarea) {
+    def cambiarAPauzar(Tarea tarea) {
 	if (tarea.ComprobarSiPuedoCambiarEstado(EstadoTarea.PAUSADA)){
 		tarea.CambiarEstado(EstadoTarea.PAUSADA)
 		}
@@ -40,9 +40,9 @@ class TareaService{
 	}
 
 
-    def crearYAgregarHijo(Tarea tarea, String titulo, String descripcion, int prioridad) {
+    def AgregarHijo(Tarea tarea, String titulo, String descripcion, int prioridad) {
 	if (tarea.estado == EstadoTarea.PENDIENTE){
-		tarea.CrearYAgregarHijo(titulo, descripcion,prioridad)
+		tarea.AgregarHijo(titulo, descripcion,prioridad)
 		}
 	tarea.save flush:true
 	}

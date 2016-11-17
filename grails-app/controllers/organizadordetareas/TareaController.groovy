@@ -35,27 +35,27 @@ class TareaController {
 
 	def cambiarAEjecucion(int id) {
 		Tarea tarea = Tarea.get(id)
-                tareaService.cambiarTareaAEnEjecucion(tarea)
+                tareaService.cambiarEnEjecucion(tarea)
 		render(view: "show", model: [tarea: tarea])
 	}
 
 	def cambiarACancelada(int id) {
 		Tarea tarea = Tarea.get(id)
-                tareaService.cambiarTareaACancelada(tarea)
+                tareaService.cambiarACancelada(tarea)
 		render(view: "show", model: [tarea: tarea])
 	}
 
 
 	def cambiarAFinalizada(int id) {
 		Tarea tarea = Tarea.get(id)
-                tareaService.cambiarTareaAFinalizar(tarea)
+                tareaService.cambiarAFinalizar(tarea)
 		render(view: "show", model: [tarea: tarea])
 	}
 
 
 	def cambiarAPausada(int id) {
 		Tarea tarea = Tarea.get(id)
-                tareaService.cambiarTareaAPauzar(tarea)
+                tareaService.cambiarAPauzar(tarea)
 		render(view: "show", model: [tarea: tarea])
 	}
 
@@ -86,7 +86,7 @@ class TareaController {
 
 	def CrearYAgregarHijo(int id) {
 		Tarea tarea = Tarea.get(id)
-		tareaService.crearYAgregarHijo(tarea, params.titulo, params.descripcion, params.prioridad.toInteger());
+		tareaService.AgregarHijo(tarea, params.titulo, params.descripcion, params.prioridad.toInteger());
 		render(view: "show", model: [tarea: tarea])
 	}
 
