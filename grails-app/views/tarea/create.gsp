@@ -33,7 +33,6 @@
                     <f:field bean="tarea" property="prioridad"/>
                 </fieldset>
                 <fieldset class="buttons">
-			<input type="submit" controller="tarea" formaction="/tarea/crear?id=${this.tarea?.id}" value="crear2"/>
                    	<g:submitButton name="create" class="save" value="${message(code: 'default.button.create.label', default: 'Create')}" />
                 </fieldset>
             </g:form>

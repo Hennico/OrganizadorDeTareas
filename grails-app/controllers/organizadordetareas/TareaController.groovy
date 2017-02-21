@@ -35,7 +35,7 @@ class TareaController {
 
 	def cambiarAEjecucion(int id) {
 		Tarea tarea = Tarea.get(id)
-                tareaService.cambiarEnEjecucion(tarea)
+                tareaService.cambiarAEnEjecucion(tarea)
 		render(view: "show", model: [tarea: tarea])
 	}
 
@@ -78,15 +78,15 @@ class TareaController {
 		render(view: "show", model: [tarea: tarea])
 	}
 
-	def agregarHija(int id) {
+	def subTarea(int id) {
 		Tarea tarea = Tarea.get(id)
-		render(view: "CrearHija", model: [tarea: tarea])
+		render(view: "SubTarea", model: [tarea: tarea])
 	}
 
 
-	def CrearYAgregarHijo(int id) {
+	def CrearYSubTarea(int id) {
 		Tarea tarea = Tarea.get(id)
-		tareaService.AgregarHijo(tarea, params.titulo, params.descripcion, params.prioridad.toInteger());
+		tareaService.SubTarea(tarea, params.titulo, params.descripcion, params.prioridad.toInteger());
 		render(view: "show", model: [tarea: tarea])
 	}
 

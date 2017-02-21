@@ -4,7 +4,7 @@ enum DependenciaTipo {
     baja, alta
 }
 
-class TareaDependencia {
+class NexoEntreTareas {
     Dependiente tareaOrigen
     Tarea tareaDependida
     DependenciaTipo tipoDependencia
@@ -12,7 +12,7 @@ class TareaDependencia {
     static constraints = {
     }
 
-public TareaDependencia(Dependiente tareaOrigen, Tarea tareaDependida, DependenciaTipo tipoDependencia){
+public NexoEntreTareas(Dependiente tareaOrigen, Tarea tareaDependida, DependenciaTipo tipoDependencia){
 	this.tareaOrigen = tareaOrigen
 	this.tareaDependida = tareaDependida
 	this.tipoDependencia = tipoDependencia

@@ -7,42 +7,50 @@ import grails.transaction.Transactional
 class TareaService{
 
     def cambiarAEnEjecucion(Tarea tarea) {
-	if (tarea.ComprobarSiPuedoCambiarEstado(EstadoTarea.EN_EJECUCION)){
-		boolean flag = true
-		tarea.tareasAnteriores.each{if(!(it.tareaDependida.estado==EstadoTarea.CANCELADA ||it.tareaDependida.estado==EstadoTarea.FINALIZADA)){flag = false}}
-		if (flag){
-			tarea.CambiarEstado(EstadoTarea.EN_EJECUCION)
-			}
-		}
+	try {
+		tarea.ComprobarYCambiarEstado(EstadoTarea.EN_EJECUCION)
+	}
+	catch (Exception ex) {
+		
+	}
 	tarea.save flush:true
 	}
 
     def cambiarACancelada(Tarea tarea) {
-	if (tarea.ComprobarSiPuedoCambiarEstado(EstadoTarea.CANCELADA)){
-		tarea.CambiarEstado(EstadoTarea.CANCELADA)
-		}
+	try {
+	tarea.ComprobarYCambiarEstado(EstadoTarea.CANCELADA)
+	}
+	catch (Exception ex) {
+		
+	}
 	tarea.tareasAnteriores.each{this.cambiarTareaACancelada(it.tareaDependida)}
 	tarea.save flush:true
 	}
 
     def cambiarAFinalizar(Tarea tarea) {
-	if (tarea.ComprobarSiPuedoCambiarEstado(EstadoTarea.FINALIZADA)){
-		tarea.CambiarEstado(EstadoTarea.FINALIZADA)
-		}
+	try {
+	tarea.ComprobarYCambiarEstado(EstadoTarea.FINALIZADA)
+	}
+	catch (Exception ex) {
+		
+	}
 	tarea.save flush:true
 	}
 
     def cambiarAPauzar(Tarea tarea) {
-	if (tarea.ComprobarSiPuedoCambiarEstado(EstadoTarea.PAUSADA)){
-		tarea.CambiarEstado(EstadoTarea.PAUSADA)
-		}
+	try {
+	tarea.ComprobarYCambiarEstado(EstadoTarea.PAUSADA)
+	}
+	catch (Exception ex) {
+		
+	}
 	tarea.save flush:true
 	}
 
 
-    def AgregarHijo(Tarea tarea, String titulo, String descripcion, int prioridad) {
+    def SubTarea(Tarea tarea, String titulo, String descripcion, int prioridad) {
 	if (tarea.estado == EstadoTarea.PENDIENTE){
-		tarea.AgregarHijo(titulo, descripcion,prioridad)
+		tarea.CrearYSubTarea(titulo, descripcion,prioridad)
 		}
 	tarea.save flush:true
 	}

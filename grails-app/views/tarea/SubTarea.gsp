@@ -32,7 +32,7 @@
                     <p>Prioridad</p><g:field name="prioridad" type="number" value="0"/>
                 </fieldset>
                 <fieldset class="buttons">
-			<input type="submit" controller="tarea" formaction="/tarea/CrearYAgregarHijo?id=${this.tarea?.id}" value="Agregar"/>
+			<input type="submit" controller="tarea" formaction="/tarea/CrearYSubTarea?id=${this.tarea?.id}" value="Agregar"/>
                 </fieldset>
             </g:form>
         </div>
