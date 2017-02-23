@@ -35,33 +35,58 @@ class TareaController {
 
 	def cambiarAEjecucion(int id) {
 		Tarea tarea = Tarea.get(id)
-                tareaService.cambiarAEnEjecucion(tarea)
+		try {
+                	tareaService.cambiarAEnEjecucion(tarea)
+		}	
+		catch (CambioDeEstadoInvalidException ex) {
+		render  "Error: Cambio de estado invalido."
+		}
 		render(view: "show", model: [tarea: tarea])
 	}
 
 	def cambiarACancelada(int id) {
 		Tarea tarea = Tarea.get(id)
+		try {
                 tareaService.cambiarACancelada(tarea)
+		}	
+		catch (CambioDeEstadoInvalidException ex) {
+		render  "Error: Cambio de estado invalido."
+		}
 		render(view: "show", model: [tarea: tarea])
 	}
 
 
 	def cambiarAFinalizada(int id) {
 		Tarea tarea = Tarea.get(id)
+		try {
                 tareaService.cambiarAFinalizar(tarea)
+		}	
+		catch (CambioDeEstadoInvalidException ex) {
+		render  "Error: Cambio de estado invalido."
+		}
 		render(view: "show", model: [tarea: tarea])
 	}
 
 
 	def cambiarAPausada(int id) {
 		Tarea tarea = Tarea.get(id)
+		try {
                 tareaService.cambiarAPauzar(tarea)
+		}	
+		catch (CambioDeEstadoInvalidException ex) {
+		render  "Error: Cambio de estado invalido."
+		}
 		render(view: "show", model: [tarea: tarea])
 	}
 
 	def cambiarAPendiente(int id) {
 		Tarea tarea = Tarea.get(id)
+		try {
 		tarea.ComprobarYCambiarEstado(EstadoTarea.PENDIENTE);
+		}	
+		catch (CambioDeEstadoInvalidException ex) {
+		render  "Error: Cambio de estado invalido."
+		}
 		tarea.save flush:true
 		render(view: "show", model: [tarea: tarea])
 	}

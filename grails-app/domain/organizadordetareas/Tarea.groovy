@@ -25,9 +25,9 @@ class Tarea extends Dependiente{
 		if (estadoNuevo == EstadoTarea.EN_EJECUCION){
 			tareasAnteriores.each{if(!(it.tareaDependida.estado==EstadoTarea.CANCELADA ||it.tareaDependida.estado==EstadoTarea.FINALIZADA)){flag = false}}
 		}
-		if (!flag)
+		if (!flag){
 			throw new CambioDeEstadoInvalidException()
-		
+		}
 		return flag
 	}	
 

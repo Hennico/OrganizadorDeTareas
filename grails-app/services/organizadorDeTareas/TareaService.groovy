@@ -7,43 +7,23 @@ import grails.transaction.Transactional
 class TareaService{
 
     def cambiarAEnEjecucion(Tarea tarea) {
-	try {
-		tarea.ComprobarYCambiarEstado(EstadoTarea.EN_EJECUCION)
-	}
-	catch (Exception ex) {
-		
-	}
+	tarea.ComprobarYCambiarEstado(EstadoTarea.EN_EJECUCION)
 	tarea.save flush:true
 	}
 
     def cambiarACancelada(Tarea tarea) {
-	try {
 	tarea.ComprobarYCambiarEstado(EstadoTarea.CANCELADA)
-	}
-	catch (Exception ex) {
-		
-	}
 	tarea.tareasAnteriores.each{this.cambiarTareaACancelada(it.tareaDependida)}
 	tarea.save flush:true
 	}
 
     def cambiarAFinalizar(Tarea tarea) {
-	try {
 	tarea.ComprobarYCambiarEstado(EstadoTarea.FINALIZADA)
-	}
-	catch (Exception ex) {
-		
-	}
 	tarea.save flush:true
 	}
 
     def cambiarAPauzar(Tarea tarea) {
-	try {
 	tarea.ComprobarYCambiarEstado(EstadoTarea.PAUSADA)
-	}
-	catch (Exception ex) {
-		
-	}
 	tarea.save flush:true
 	}
 
