@@ -20,10 +20,16 @@ class Tarea extends Dependiente{
 		estado = EstadoTarea.PENDIENTE
 	}
 
+	public CancelarEstadoInetrno(){
+		if (this.ComprobarSiPuedoCambiarEstado(EstadoTarea.CANCELADA)){
+		estado = EstadoTarea.CANCELADA
+		}
+	}
+
 	private boolean ComprobarSiPuedoCambiarEstado(EstadoTarea estadoNuevo) {
 		boolean flag = estado.permiteCambioA(estadoNuevo)
 		if (estadoNuevo == EstadoTarea.EN_EJECUCION){
-			tareasAnteriores.each{if(!(it.tareaDependida.estado==EstadoTarea.CANCELADA ||it.tareaDependida.estado==EstadoTarea.FINALIZADA)){flag = false}}
+			tareasAnteriores.each{if(!(it.tareaDependida.estado==EstadoTarea.CANCELADA ||it.tareaDependida.estado==EstadoTarea.FINALIZADA||(it.tareaDependida.estado==EstadoTarea.EN_EJECUCION && it.tipoDependencia == DependenciaTipo.baja))){flag = false}}
 		}
 		if (!flag){
 			throw new CambioDeEstadoInvalidException()

@@ -3,7 +3,7 @@ package organizadordetareas
 class Objetivo extends Dependiente{
     	String titulo
     	String descripcion
-    	String estado //Por ahora lo dejo asi
+    	EstadoTarea estado //No creo que amerita une stado distinto.
 	
     	int prioridad
 		// cuando corrigamos los nombres de las variables. Tambien corregir los de la View.
@@ -23,6 +23,13 @@ class Objetivo extends Dependiente{
 		titulo
 	}
 
+	public ActualizarEstado(){
+		boolean flag = true
+		tareasAnteriores.each{if(!(it.tareaDependida.estado==EstadoTarea.CANCELADA ||it.tareaDependida.estado==EstadoTarea.FINALIZADA)){flag = false}}
+		if (flag){
+			estado = EstadoTarea.FINALIZADA
+		}
+	}
 
 
 }

@@ -47,7 +47,7 @@ class TareaController {
 	def cambiarACancelada(int id) {
 		Tarea tarea = Tarea.get(id)
 		try {
-                tareaService.cambiarACancelada(tarea)
+                	tareaService.cambiarACancelada(tarea)
 		}	
 		catch (CambioDeEstadoInvalidException ex) {
 		render  "Error: Cambio de estado invalido."
